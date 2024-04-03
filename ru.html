@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-language" content="ru-RU">
+	<!--modile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Маршруты грузоперевозок</title>
+
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<!-- Tether -->
+	<link href="css/tether.min.css" rel="stylesheet">
+
+	<link href="css/main.css" rel="stylesheet">
+
+	<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+	<!-- Modal -->
+	<div class="modal fade" id="warning">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Внимание!</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+					Modal body..
+				</div>
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Хорошо</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- end of modal -->
+
+	<!-- Content -->
+	<div class="row m-0 text-center">
+		<!-- interface -->
+		<div id="interface" class="col-md-4">
+			<div id="directionsPanel" class="col m-0">
+				<button id="btnBackGenetation" type="button" class="btn m-1 btn-link"> ← вернуться назад</button>
+			</div>
+			<div class="fixed-bottom col-md-4">
+				<div class="d-inline btn-dark btn">
+					<a class="small" href="en.html">English</a> |
+					<a class="small" href="ru.html">Русский</a> |
+					<a class="small" href="by.html">Беларуская</a>
+				</div>
+			</div>
+			<h3 class="m-3 mb-0 pb-0"> Маршруты грузоперевозок <img src="img/logo.svg" /> </h3>
+			<div id="genetation" class="p-0">
+				<button id="btnBackDirectionsPanel" type="button" class="btn m-0 btn-link p-0"> вернуться к маршруту
+					→</button>
+				<div id="inputRoute" class="m-0">
+					<input id="origin-input" class="m-1 col-12" type="text" placeholder="Ввести точку отправки">
+					<input id="destination-input0" class="m-1 col-12" type="text" placeholder="Ввести точку прибытия">
+					<input id="destination-input1" class="m-1 col-12 text-info" type="text"
+						placeholder="Ввести промежуточную точку">
+					<input id="destination-input2" class="m-1 col-12 text-info" type="text"
+						placeholder="Ввести промежуточную точку">
+					<input id="destination-input3" class="m-1 col-12 text-info" type="text"
+						placeholder="Ввести промежуточную точку">
+					<input id="destination-input4" class="m-1 col-12 text-info" type="text"
+						placeholder="Ввести промежуточную точку">
+					<input id="destination-input5" class="m-1 col-12 text-info" type="text"
+						placeholder="Ввести промежуточную точку">
+				</div>
+				<div class="btn-group m-0 justify-content-center col-12">
+					<button id="btn-ini" class="btn m-1 btn-outline-primary"> Добавить точку </button>
+					<button id="btnDelInput" type="button" class="btn m-1 btn-danger" onClick="btnDel()">
+						<b>Удалить</b>
+					</button>
+				</div>
+				<hr />
+				<div class="col-12">
+					<h4>Опции:</h4>
+					<div class="form-group">
+						<label class="custom-control custom-checkbox m-2">
+							<input id="ch1" type="checkbox" class="custom-control-input" />
+							<span class="custom-control-indicator"></span>
+							<span class="custom-control-description">Оптимизировать маршрут&nbsp;
+								<sup data-toggle="tooltip" title="Располагает промежуточные точки в оптимальном порядке"
+									data-placement="top">?</sup>
+							</span>
+						</label>
+
+						<label class="custom-control custom-checkbox m-2">
+							<input id="ch2" type="checkbox" class="custom-control-input" />
+							<span class="custom-control-indicator"></span>
+							<span class="custom-control-description">Избегать платных дорог&nbsp;
+								<sup data-toggle="tooltip"
+									title="Маршрут строится избегая платных дорог, если это возможно"
+									data-placement="top">?</sup>
+							</span>
+						</label>
+
+						<label class="custom-control custom-checkbox  m-2">
+							<input id="ch3" type="checkbox" class="custom-control-input" />
+							<span class="custom-control-indicator"></span>
+							<span class="custom-control-description">Несколько альтернативных маршрутов&nbsp;
+								<sup data-toggle="tooltip"
+									title="Выводит информацию об альтернативных маршрутах и примерное время для их преодоления"
+									data-placement="top">?</sup>
+							</span>
+						</label>
+
+						<label class="custom-control custom-checkbox  m-2">
+							<input id="ch4" type="checkbox" class="custom-control-input" />
+							<span class="custom-control-indicator"></span>
+							<span class="custom-control-description">Избегать крупные магистрали&nbsp;
+								<sup data-toggle="tooltip"
+									title="Маршрут по возможности строится избегая крупные магистрали"
+									data-placement="top">?</sup>
+							</span>
+						</label>
+					</div>
+					<hr />
+					<div class="form-group has-success">
+						<form class="form-inline mb-3 col text-center">
+							<div class="col-12">Отобразить дополнительные места:&nbsp;
+								<sup data-toggle="tooltip"
+									title="Выводит дополнительные ближайшие к введённой точке места. Максимально количество выводимых точек - 200. Поиск ограничен радиусом в 50 км и выделяется синим цветом"
+									data-placement="top">?</sup>
+							</div>
+							<div class="col">
+								<select class="custom-select m-2" id="inlineFormSelect">
+									<option selected>Выбрать...</option>
+									<option value="Заправки">Заправки</option>
+									<option value="Парковки">Парковки</option>
+									<option value="Стинции тех. обслуживания">Стинции тех. обслуживания</option>
+								</select>
+								<input id="add-input" class="m-1 col-12" type="text" placeholder="Введите место">
+								<label class="custom-control custom-checkbox">
+									<input id="ch5" type="checkbox" class="custom-control-input" />
+									<span class="custom-control-indicator"></span>
+									<span class="custom-control-description">Сейчас открыты&nbsp;
+										<sup data-toggle="tooltip"
+											title="Выводит только открытые в данный момент места, график работы которых известен"
+											data-placement="top">?</sup>
+									</span>
+								</label>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="col mb-5">
+					<button id="btn-ok" class="btn btn-primary m-1">
+						<b>Построить маршрут</b>
+					</button>
+					<button class="btn m-1 btn-outline-secondary" id="cleanDD">Очистить карту</button>
+				</div>
+			</div>
+		</div>
+		<!-- end of interface -->
+		<div class="col-12 col-md-8 p-0">
+			<div id="map"></div>
+		</div>
+
+	</div>
+	<!-- end of content -->
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<!-- start modal -->
+	<script>$(function () {
+			$('[data-toggle="tooltip"]').tooltip();
+		})</script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
+
+	<!-- API -->
+	<script
+		src="https://maps.googleapis.com/maps/api/js?onload=onLoadCallback?key=YOUR_API_KEY&libraries=places&language=ru&callback=initMap"
+		async defer></script>
+
+	<!-- other scripts -->
+	<script src="js/Reset.js"></script>
+	<script src="js/generation.js"></script>
+	<script src="js/onClick.js"></script>
+
+</body>
+
+</html>

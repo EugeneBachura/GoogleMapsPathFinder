@@ -1,0 +1,50 @@
+@charset "utf-8";
+/* CSS Document */
+
+#map {
+    height: 100vh;
+    width: 100%;
+	background-color: grey; /* if map not loadin */
+}
+
+input { 
+    text-align: center;
+}
+.btn, label, sup {
+	cursor: pointer;
+}
+
+#interface {
+	overflow: auto; 
+	height: 100vh; 
+	overflow-x: hidden;
+    border: 3px solid #242f3e;
+}
+
+#directionsPanel {
+	position: absolute; 
+	background-color: #FFFFFF; 
+	visibility: hidden; 
+	overflow: auto; 
+	height: 100%;
+}
+
+a.small {
+	color: aliceblue;
+}
+
+#btnBackDirectionsPanel {
+	visibility: hidden;
+}
+
+#inputRoute .text-info {
+	display:none;
+}
+
+#btnDelInput {
+	opacity:0.5;
+}
+
+#add-input {
+	display: none;
+}
