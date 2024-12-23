@@ -1,8 +1,14 @@
 # GoogleMapsPathFinder
 
+## Background
+
+This project was originally developed as part of a diploma defense at Belarusian State University (BSU) in Minsk, Belarus, in 2018. It represents the practical component of my academic research and efforts in the field of logistics and transportation.
+
+The codebase is now made public to serve as a resource and tool for others interested in freight route optimization. Please note that this repository contains only the code and not the accompanying thesis text or its descriptive components.
+
 ## Overview
 
-GoogleMapsPathFinder is a web-based application designed to streamline the process of planning and optimizing freight transportation routes. Utilizing the powerful Google Maps API, it allows users to input multiple dispatch and destination points, calculates the most efficient routes, and offers route customization based on user preferences.
+GoogleMapsPathFinder is a web-based application designed to streamline the process of planning and optimizing freight transportation routes. Utilizing the Google Maps API, it allows users to input multiple dispatch and destination points, calculates the most efficient routes, and offers route customization based on user preferences.
 
 ## Features
 
@@ -44,11 +50,3 @@ Look for the line similar to this in your language-specific HTML files:
   defer
 ></script>
 ```
-
-## Background
-
-This project was originally developed as part of a diploma defense at Belarusian State University (BSU) in Minsk, Belarus, in 2018. It represents the practical component of my academic research and efforts in the field of logistics and transportation.
-
-The codebase is now made public to serve as a resource and tool for others interested in freight route optimization. Please note that this repository contains only the code and not the accompanying thesis text or its descriptive components.
-
-I'm open to collaborations and discussions that can further enhance this project or contribute to the field. Feel free to reach out or fork this repository to expand on the work done here.
